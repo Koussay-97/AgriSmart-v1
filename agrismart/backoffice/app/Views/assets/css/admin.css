@@ -1,0 +1,37 @@
+/* AgriSmart Back Office : mise en page type "dashboard" + charte graphique */
+:root { --as-leaf: #2C7A46; --as-forest: #17352A; --as-ochre: #E3A72F; --as-sand: #F4F1E8; --sidebar-w: 260px;
+        --bs-primary: #2C7A46; --bs-primary-rgb: 44, 122, 70; --bs-link-color: #2C7A46; --bs-link-hover-color: #17352A;
+        --bs-body-font-family: 'Poppins', system-ui, sans-serif; }
+body { background: var(--as-sand); }
+.text-primary { color: var(--as-leaf) !important; }
+.btn-primary { --bs-btn-bg: #2C7A46; --bs-btn-border-color: #2C7A46; --bs-btn-hover-bg: #17352A; --bs-btn-hover-border-color: #17352A; --bs-btn-active-bg: #17352A; --bs-btn-active-border-color: #17352A; }
+.btn-outline-primary { --bs-btn-color: #2C7A46; --bs-btn-border-color: #2C7A46; --bs-btn-hover-bg: #2C7A46; --bs-btn-hover-border-color: #2C7A46; }
+.form-control:focus, .form-select:focus { border-color: var(--as-leaf); box-shadow: 0 0 0 .2rem rgba(44,122,70,.2); }
+.card { border: 0; border-radius: 16px; box-shadow: 0 2px 12px rgba(23,53,42,.08); }
+
+#preloader { position: fixed; inset: 0; background: #fff; z-index: 9999; display: flex; align-items: center; justify-content: center; transition: opacity .3s; }
+#preloader .spinner { width: 48px; height: 48px; border: 5px solid #d8e8dd; border-top-color: var(--as-leaf); border-radius: 50%; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Sidebar */
+.sidebar-nav-wrapper { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--as-forest); z-index: 100; overflow-y: auto; transition: transform .3s; }
+.sidebar-nav-wrapper .navbar-logo { padding: 1.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+.sidebar-nav ul { padding: 1rem 0; margin: 0; }
+.sidebar-nav .nav-item a { display: flex; align-items: center; gap: .8rem; padding: .85rem 1.5rem; color: rgba(255,255,255,.7); text-decoration: none; border-left: 4px solid transparent; }
+.sidebar-nav .nav-item a:hover { color: #fff; background: rgba(255,255,255,.05); }
+.sidebar-nav .nav-item.active a { color: #fff; background: rgba(255,255,255,.1); border-left-color: var(--as-ochre); }
+.sidebar-nav .nav-item a.disabled { opacity: .4; cursor: not-allowed; }
+
+/* Contenu */
+.main-wrapper { margin-left: var(--sidebar-w); min-height: 100vh; transition: margin .3s; }
+.header { background: #fff; box-shadow: 0 1px 6px rgba(0,0,0,.06); position: sticky; top: 0; z-index: 90; }
+.avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--as-leaf); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; }
+.overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 99; }
+.page-content { padding: 1.5rem; }
+
+@media (max-width: 991px) {
+    .sidebar-nav-wrapper { transform: translateX(-100%); }
+    .main-wrapper { margin-left: 0; }
+    body.sidebar-open .sidebar-nav-wrapper { transform: none; }
+    body.sidebar-open .overlay { display: block; }
+}

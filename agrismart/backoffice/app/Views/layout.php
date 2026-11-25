@@ -1,0 +1,32 @@
+<?php
+/**
+ * Layout principal : inclut tous les blocs communs et injecte le contenu propre à chaque page ($content) au milieu.
+ *
+ * Variables attendues (fournies par Controller::render()) :
+ *   $title        string - titre de l'onglet <title>
+ *   $currentPage  string - clé de la page courante (pour la sidebar)
+ *   $content      string - HTML de la page (déjà rendu)
+ *   $extraScripts string - JS spécifique à la page (optionnel)
+ */
+require_once __DIR__ . '/partials/head.php';
+require_once __DIR__ . '/partials/sidebar.php';
+?>
+    <div class="overlay"></div>
+    <!-- ======== main-wrapper start =========== -->
+    <main class="main-wrapper">
+        <?php require_once __DIR__ . '/partials/header.php'; ?>
+
+        <?php if ($flashMsg = flash()): ?>
+            <div class="page-content pb-0">
+                <div class="alert alert-<?= e($flashMsg['type']) ?> alert-dismissible fade show mb-0" role="alert">
+                    <?= e($flashMsg['msg']) ?><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <?= $content ?>
+
+        <?php require_once __DIR__ . '/partials/footer.php'; ?>
+    </main>
+    <!-- ======== main-wrapper end =========== -->
+<?php require_once __DIR__ . '/partials/scripts.php'; ?>
